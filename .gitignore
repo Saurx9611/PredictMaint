@@ -1,0 +1,41 @@
+# ===========================
+# GLOBAL / OS FILES
+# ===========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# ===========================
+# BACKEND (Python/FastAPI)
+# ===========================
+Backend/__pycache__/
+Backend/*.pyc
+Backend/.pytest_cache/
+Backend/venv/
+Backend/env/
+Backend/.env
+
+# Optional: Ignore the dataset if it is very large (Github limit is 100MB)
+# Backend/ai4i2020.csv
+
+# Optional: Ignore the trained model if you want users to train it themselves
+# Backend/*.joblib
+
+# ===========================
+# FRONTEND (React/Node)
+# ===========================
+Frontend/node_modules/
+Frontend/dist/
+Frontend/build/
+Frontend/.env
+Frontend/.env.local
+Frontend/npm-debug.log
+Frontend/yarn-error.log
+
+# ===========================
+# DOCKER
+# ===========================
+# We usually keep Dockerfiles, but ignore local overrides if any
+docker-compose.override.yml

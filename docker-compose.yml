@@ -1,0 +1,32 @@
+
+services:
+  # Backend Service
+  backend:
+    build: ./backend  # Path to backend folder
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app # Syncs code so you don't have to rebuild on every change
+    environment:
+      - ALLOWED_ORIGINS=http://localhost:5173
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    
+
+  # Frontend Service
+  frontend:
+    build: ./frontend # Path to frontend folder
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Prevents overwriting container node_modules
+    stdin_open: true      # Needed for React hot-reloading in Docker
+    tty: true
+    depends_on:
+      backend:
+        condition: service_healthy         # Waits for backend to start
